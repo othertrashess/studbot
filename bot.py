@@ -44,8 +44,8 @@ def handle_text(message):
 
         bot.send_message(message.chat.id, text, parse_mode='Markdown', reply_markup=markup)
          
-          # send notification messages to administrators
-          send_notification(message)
+        # send notification messages to administrators
+        send_notification(message)
      
     elif message.text == '#дайсовет':
 
@@ -53,8 +53,8 @@ def handle_text(message):
 
         bot.send_message(message.chat.id, text, parse_mode='Markdown', reply_markup=markup) 
 
-          # send notification messages to administrators
-          send_notification(message)
+        # send notification messages to administrators
+        send_notification(message)
      
     elif message.text == '#предложение':
 
@@ -62,8 +62,8 @@ def handle_text(message):
 
         bot.send_message(message.chat.id, text, parse_mode='Markdown', reply_markup=markup)  
 
-          # send notification messages to administrators
-          send_notification(message)
+        # send notification messages to administrators
+        send_notification(message)
      
 # запускаем бота
 bot.polling()
