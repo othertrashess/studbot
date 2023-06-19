@@ -17,12 +17,6 @@ markup.row(advice_button, offer_button)
 # создаем список чатов для администраторов
 admin_chat_ids = ["1234567890", "0987654321"]
 
-# функция для отправки уведомлений
-def send_notification(message):
-    notification_text = f"Новое сообщение в чате с ботом от пользователя {message.chat.id}"
-    for chat_id in admin_chat_ids:
-        bot.send_message(chat_id, notification_text)
-
 # обработчик команды /start
 @bot.message_handler(commands=['start'])
 def start_message(message):
@@ -43,9 +37,6 @@ def handle_text(message):
         text = '🎯 *Моя цель — помочь тебе определиться с будущей профессией и подобрать подходящую специальность в нашем университете.*\n\nДавай начнем с того, что ты расскажешь мне о своих увлечениях, хобби и тех предметах в школе, которые тебе больше всего нравились. Кроме того, я бы хотел узнать, какие навыки тебе было бы интересно развивать в будущей профессии 💼🚀\n\nИ ещё, это твоё первое высшее образование?🎓'
 
         bot.send_message(message.chat.id, text, parse_mode='Markdown', reply_markup=markup)
-         
-        # send notification messages to administrators
-        send_notification(message)
      
     elif message.text == '#дайсовет':
 
@@ -53,17 +44,11 @@ def handle_text(message):
 
         bot.send_message(message.chat.id, text, parse_mode='Markdown', reply_markup=markup) 
 
-        # send notification messages to administrators
-        send_notification(message)
-     
     elif message.text == '#предложение':
 
         text = '💡*Будет здорово, если ты поделишься с нами своими идеями!*\n\nНаша команда с удовольствием выслушает все, что придёт тебе на ум.'
 
         bot.send_message(message.chat.id, text, parse_mode='Markdown', reply_markup=markup)  
 
-        # send notification messages to administrators
-        send_notification(message)
-     
 # запускаем бота
 bot.polling()
