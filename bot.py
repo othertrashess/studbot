@@ -16,7 +16,7 @@ markup.row(advice_button, offer_button)
 
 # функция для отправки уведомлений
 def send_notification(message):
-    notification_text = f"Новое сообщение в чате с ботом от пользователя {message.chat.id}"
+    notification_text = f"Новое сообщение в чате с ботом от пользователя @{username}"
     for chat_id in admin_chat_ids:
         bot.send_message(chat_id, notification_text)
 
