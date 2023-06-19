@@ -14,8 +14,14 @@ markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
 markup.add(prof_button)
 markup.row(advice_button, offer_button)
 
+# функция для отправки уведомлений
+def send_notification(message):
+    notification_text = f"Новое сообщение в чате с ботом от пользователя {message.chat.id}"
+    for chat_id in admin_chat_ids:
+        bot.send_message(chat_id, notification_text)
+
 # создаем список чатов для администраторов
-admin_chat_ids = ["1234567890", "0987654321"]
+admin_chat_ids = ["537790949", "5656402876"]
 
 # обработчик команды /start
 @bot.message_handler(commands=['start'])
@@ -38,17 +44,26 @@ def handle_text(message):
 
         bot.send_message(message.chat.id, text, parse_mode='Markdown', reply_markup=markup)
      
+        # send notification messages to administrators
+        send_notification(message)
+     
     elif message.text == '#дайсовет':
 
         text = '🤔 *О чём ты бы хотел услышать?*\n\nЯ с радостью дам совет, если это поможет тебе!'
 
         bot.send_message(message.chat.id, text, parse_mode='Markdown', reply_markup=markup) 
 
+        # send notification messages to administrators
+        send_notification(message)
+     
     elif message.text == '#предложение':
 
         text = '💡*Будет здорово, если ты поделишься с нами своими идеями!*\n\nНаша команда с удовольствием выслушает все, что придёт тебе на ум.'
 
         bot.send_message(message.chat.id, text, parse_mode='Markdown', reply_markup=markup)  
 
+        # send notification messages to administrators
+        send_notification(message)
+     
 # запускаем бота
 bot.polling()
